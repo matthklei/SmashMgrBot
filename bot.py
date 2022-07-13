@@ -5,6 +5,7 @@ import json
 from graphqlclient import GraphQLClient
 from discord.ext import commands
 
+load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 SMASHTOKEN = os.getenv('SMASHGG_TOKEN')
 ggApiVersion = 'alpha'
@@ -12,7 +13,7 @@ ggApiVersion = 'alpha'
 bot = commands.Bot(command_prefix='!')
 
 gql = GraphQLClient('https://api.smash.gg/gql/' + ggApiVersion)
-gql.inject_token('Bearer c14b06c783cc9185ada51cfc07423e29')
+gql.inject_token('Bearer ' + SMASHTOKEN)
 
 
 @bot.command(name = 'stream', help = 'Returns stream link(s) for a tournament')
@@ -192,4 +193,4 @@ async def navi(ctx):
 async def on_ready():
 	print(bot.user.name + ' connected')
 	
-bot.run('OTU4MDczMjMzMzU2MjQzMDU0.GEVndT.rIGZrDpMyM6FYzH2seETc7Jffhlnx75hCdeWVY')
+bot.run(TOKEN)
